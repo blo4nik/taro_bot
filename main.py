@@ -205,8 +205,6 @@ def callback_message(callback):
         markup = types.InlineKeyboardMarkup()
         no_markup = types.InlineKeyboardMarkup()
         
-
-        print(callback.data)
         with open('text/next_question.txt', 'r', encoding='utf-8') as file:
             text = file.read()
 
@@ -297,7 +295,6 @@ def callback_message(callback):
         bot.edit_message_reply_markup(chat_id=callback.message.chat.id, message_id=sended_msg_id_5, reply_markup=markup)
 
     if callback.data[:26] == 'after_reload_card_deck_1_1':
-        print('after_reload_card_deck_1_1')
         next_card = random.choice(card_deck_1)
         card_deck_1.remove(next_card)
         
@@ -314,7 +311,6 @@ def callback_message(callback):
         bot.edit_message_reply_markup(callback.message.chat.id, msg_id, reply_markup=markup)
 
     if callback.data[:26] == 'after_reload_card_deck_1_2':
-        print(f'after_reload_card_deck_1_2')
         id = callback.data.split(sep='.')
         ph_id = id[1]
         msg_id = id[2]
@@ -328,7 +324,6 @@ def callback_message(callback):
         bot.edit_message_reply_markup(callback.message.chat.id, msg_id, reply_markup=markup)
 
     if callback.data[:26] == 'after_reload_card_deck_2_1':
-        print('after_reload_card_deck_2_1')
         next_card = random.choice(card_deck_2)
         card_deck_2.remove(next_card)
         
@@ -345,7 +340,6 @@ def callback_message(callback):
         bot.edit_message_reply_markup(callback.message.chat.id, msg_id, reply_markup=markup)
 
     if callback.data[:26] == 'after_reload_card_deck_2_2':
-        print(f'after_reload_card_deck_2_2')
         id = callback.data.split(sep='.')
         ph_id = id[1]
         msg_id = id[2]
