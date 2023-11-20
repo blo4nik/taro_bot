@@ -22,13 +22,26 @@ card_deck_2 = []
 admins = [618628269, 457811689]
 
 def check_subscription_and_update_markup(chat_id, message_id, user_id):
+    with open('text/start_no_subscribe.txt', 'r', encoding='utf-8') as file:
+        text_1 = file.read()
+
     with open('text/start_subscribed.txt', 'r', encoding='utf-8') as file:
         text = file.read()
 
     is_id_chat_member = bot.get_chat_member(chat_id=-1001867137079, user_id=user_id)
     is_subscribed = is_id_chat_member.status in status
     
-    if is_subscribed:
+    if not is_subscribed and text_1 == text:
+        markup = types.InlineKeyboardMarkup()
+        markup.add(types.InlineKeyboardButton(text='НАЧАТЬ ИГРУ', callback_data=f'start_game{message_id}'))
+        bot.edit_message_reply_markup(chat_id, message_id, reply_markup=markup)
+
+    elif is_subscribed and text_1 == text:
+        markup = types.InlineKeyboardMarkup()
+        markup.add(types.InlineKeyboardButton(text='НАЧАТЬ ИГРУ', callback_data=f'start_game{message_id}'))
+        bot.edit_message_reply_markup(chat_id, message_id, reply_markup=markup)
+
+    elif is_subscribed:
         markup = types.InlineKeyboardMarkup()
         markup.add(types.InlineKeyboardButton(text='НАЧАТЬ ИГРУ', callback_data=f'start_game{message_id}'))
         bot.edit_message_text(chat_id=chat_id, text=text, message_id=message_id, parse_mode='HTML')
