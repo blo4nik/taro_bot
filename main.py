@@ -33,7 +33,8 @@ def check_subscription_and_update_markup(chat_id, message_id, user_id):
     
     if not is_subscribed and text_1 == text:
         markup = types.InlineKeyboardMarkup()
-        markup.add(types.InlineKeyboardButton(text='НАЧАТЬ ИГРУ', callback_data=f'start_game{message_id}'))
+        markup.add(types.InlineKeyboardButton(text='ПОДПИСАТЬСЯ НА КАНАЛ', url='https://t.me/nobilissima13'))
+        markup.add(types.InlineKeyboardButton(text='ПРОВЕРИТЬ ПОДПИСКУ', callback_data=f'chek{message_id}'))
         bot.edit_message_reply_markup(chat_id, message_id, reply_markup=markup)
 
     elif is_subscribed and text_1 == text:
